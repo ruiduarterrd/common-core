@@ -1,0 +1,33 @@
+# `Victor Geislinger - Setting Up SSH Keys for Github` [ https://www.youtube.com/watch?v=8X4u9sca3Io&t=87s ]
+
+# 1. gen key and associate with github account
+
+`key-gen -t ed25519 -C <email>`
+
+# 2. start the agent
+
+`eval "$(ssh-agent -s)"`
+
+# 3. creat/edit the file ~/.ssh/config
+
+`nano ~/.ssh/config` 
+
+	# add this to the file
+	Host *
+		AddKeysToAgent yes
+		IdentityFile ~/.ssh/id_ed25519
+
+# 4. add key
+
+`ssh-add ~/.shh/id_ed25519`
+
+# 5. create/add public key to the github
+
+`cat ~/.ssh/id_ed25519.pub`
+
+	# copy the output and past on the github
+
+# 6. check if its working
+
+`ssh -T git@github.com`
+
